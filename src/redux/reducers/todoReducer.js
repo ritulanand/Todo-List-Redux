@@ -1,7 +1,11 @@
 import { ADD_TODO, TOGGLE_TODO } from "../actions/todoActions";
 
 const initialState = {
-    todos: [],
+    todos: [{
+        text : 'meeting at 9', completed : true,
+    }, {
+        text : 'lunch at 2', completed : false,
+    }],
     };
 
 
@@ -28,5 +32,7 @@ const initialState = {
                     return todo;
                 })
               }
+            default:
+                return state;
         }
     }

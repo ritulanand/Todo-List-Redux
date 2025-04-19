@@ -3,6 +3,8 @@
 import {useState} from "react";
 import TodoForm from './components/TodoForm/TodoForm';
 import TodoList from './components/TodoList/TodoList';
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -20,8 +22,10 @@ function App() {
   return (
     <div>
        <h1>Todo App</h1>
+       <Provider store={store}> 
         <TodoForm oncreateTodo = {createTodo} />
-        <TodoList todos = {todos} onToggle={toggleTodo} />
+        <TodoList  onToggle={toggleTodo} />
+        </Provider>
     </div>
   );
 }
