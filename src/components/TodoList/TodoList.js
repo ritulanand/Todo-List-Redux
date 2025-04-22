@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { toggleTodo } from "../../redux/actions/todoActions";
 
 function TodoList({onToggle}) {
-    const todos = useSelector((state) => state.todos);
+    const todos = useSelector((state) => state.todoReducer.todos);
+    console.log("todos", todos);
     const dispatch = useDispatch();
     // const todos = store.getState().todos; 
     //note: store.getState() is not recommended to use in functional components as it will not re-render the component when the state changes.
