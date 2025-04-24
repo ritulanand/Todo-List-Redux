@@ -19,7 +19,10 @@ function TodoList() {
                 <li key={index}>
                     <span className="content">{todo.text}</span>
                     <span className={todo.completed ? "completed" : "pending"}>{todo.completed ? "completed" : "pending"}</span>
-                    <button onClick={() =>  dispatch(actions.toggle(index))}>Toggle</button>
+                    <button onClick={() =>  {
+                        // console.log("[LOG] :Todo Toggle action dispacthed");
+                        dispatch(actions.toggle(index))
+                    }}>Toggle</button>
                 </li>
             ))}
         </ul> 

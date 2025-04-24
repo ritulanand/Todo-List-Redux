@@ -21,6 +21,7 @@ const notificationSlice = createSlice({
     //deprecated
     extraReducers : (builder) => {
         builder.addCase(actions.add, (state, action) => {
+            console.log("extra")
             state.message = "Todo is created";
         })
     }
