@@ -5,6 +5,7 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  //console.log twice because of virtual dom
   <React.StrictMode>
     <App />
   </React.StrictMode>

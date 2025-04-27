@@ -19,6 +19,7 @@ const notificationSlice = createSlice({
     //     }
     // }
     //deprecated
+    //alert
     extraReducers : (builder) => {
         builder.addCase(actions.add, (state, action) => {
             console.log("extra")

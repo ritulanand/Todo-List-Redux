@@ -4,11 +4,27 @@ import { useDispatch } from "react-redux";
 // import { toggleTodo } from "../../redux/actions/todoActions";
 import { actions } from "../../redux/reducers/todoReducer";
 import {todoSelector} from "../../redux/reducers/todoReducer";
+import { useEffect } from "react";
+import axios from "axios";
 
 function TodoList() {
+
     const todos = useSelector(todoSelector);
     console.log("todos", todos);
     const dispatch = useDispatch();
+    useEffect(() => {
+        // fetch("http://localhost:4100/api/todos")
+        // .then((res) =>  res.json())
+        // .then((data) => {
+        //       console.log("data", data);
+        // })
+        axios.get("http://localhost:4100/api/todos")
+        .then(res=> {
+            console.log("res", res);
+            dispatch(actions.setInitalState(res.data));
+        });
+        
+    },[])
     // const todos = store.getState().todos; 
     //note: store.getState() is not recommended to use in functional components as it will not re-render the component when the state changes.
     // console.log("todos>", todos);

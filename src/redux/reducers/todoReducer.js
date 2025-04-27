@@ -2,11 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    todos: [{
-        text : 'meeting at 9', completed : true,
-    }, {
-        text : 'lunch at 2', completed : false,
-    }],
+    todos: [],
     };
 
 
@@ -15,6 +11,13 @@ const todoSlice = createSlice({
     name : "todo",
     initialState : initialState,
     reducers : {
+        setInitalState: (state, action) => {
+            console.log("action payload", action.payload);
+            state.todos = [...action.payload];
+            // The spread operator creates a new array with the same elements as action.payload. This ensures that state.todos is a separate array, maintaining the principle of immutability in Redux. Redux relies on immutability to detect state changes efficiently.
+            // If you directly assign state.todos = action.payload, both state.todos and action.payload will reference the same array in memory. Any changes made to one will affect the other, which can lead to bugs and make debugging difficult.
+
+        },
         add : (state, action )=> {
             state.todos.push({
                 text : action.payload,
