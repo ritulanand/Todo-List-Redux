@@ -1,15 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 
 const initialState = {
     todos: [],
     };
 
+    //getInitalStateAsync is a function but is not pure function
+
+    export const getInitalStateAsync = createAsyncThunk("todo/getInitialState", (arg, thunkAPI) => {
+        axios.get("http://localhost:4100/api/todos")
+        .then(res=> {
+            console.log(">>", res);
+            // dispatch(actions.setInitalState(res.data));
+            thunkAPI.dispatch(actions.setInitalState(res.data));
+        });
+    })
+
+
 
     // creating reducer using redux-tookit
 const todoSlice = createSlice({
     name : "todo",
     initialState : initialState,
+    //pure functions
     reducers : {
         setInitalState: (state, action) => {
             console.log("action payload", action.payload);
@@ -18,6 +32,7 @@ const todoSlice = createSlice({
             // If you directly assign state.todos = action.payload, both state.todos and action.payload will reference the same array in memory. Any changes made to one will affect the other, which can lead to bugs and make debugging difficult.
 
         },
+
         add : (state, action )=> {
             state.todos.push({
                 text : action.payload,

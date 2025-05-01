@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 import "./TodoList.css";
 import { useDispatch } from "react-redux";
 // import { toggleTodo } from "../../redux/actions/todoActions";
-import { actions } from "../../redux/reducers/todoReducer";
+import { actions, getInitalStateAsync } from "../../redux/reducers/todoReducer";
 import {todoSelector} from "../../redux/reducers/todoReducer";
 import { useEffect } from "react";
-import axios from "axios";
+
 
 function TodoList() {
 
@@ -13,16 +13,13 @@ function TodoList() {
     console.log("todos", todos);
     const dispatch = useDispatch();
     useEffect(() => {
+        dispatch(getInitalStateAsync());
         // fetch("http://localhost:4100/api/todos")
         // .then((res) =>  res.json())
         // .then((data) => {
         //       console.log("data", data);
         // })
-        axios.get("http://localhost:4100/api/todos")
-        .then(res=> {
-            console.log("res", res);
-            dispatch(actions.setInitalState(res.data));
-        });
+       
         
     },[])
     // const todos = store.getState().todos; 
