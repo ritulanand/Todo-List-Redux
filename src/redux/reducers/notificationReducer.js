@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { actions } from "./todoReducer"
+import { actions, addTodoAsync, toggleTodo } from "./todoReducer"
+// import { toggle } from "../../../../backend/todoController"
 
 const initialState = {
     message : ""
@@ -21,10 +22,15 @@ const notificationSlice = createSlice({
     //deprecated
     //alert
     extraReducers : (builder) => {
-        builder.addCase(actions.add, (state, action) => {
+        builder.addCase(addTodoAsync.fulfilled, (state, action) => {
             console.log("extra")
             state.message = "Todo is created";
         })
+        .addCase(toggleTodo.fulfilled, (state, action) => {
+            console.log("extra toggle")
+            state.message = "Todo is toggled";
+        }
+    )
     }
     // extraReducers : {
     //     //map objects : [key] : value. 

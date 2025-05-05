@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import "./TodoList.css";
 import { useDispatch } from "react-redux";
 // import { toggleTodo } from "../../redux/actions/todoActions";
-import { actions, getInitalStateAsync } from "../../redux/reducers/todoReducer";
+import { actions, getInitalStateAsync, toggleTodo } from "../../redux/reducers/todoReducer";
 import {todoSelector} from "../../redux/reducers/todoReducer";
 import { useEffect } from "react";
 
@@ -34,7 +34,7 @@ function TodoList() {
                     <span className={todo.completed ? "completed" : "pending"}>{todo.completed ? "completed" : "pending"}</span>
                     <button onClick={() =>  {
                         // console.log("[LOG] :Todo Toggle action dispacthed");
-                        dispatch(actions.toggle(index))
+                        dispatch(toggleTodo(index))
                     }}>Toggle</button>
                 </li>
             ))}

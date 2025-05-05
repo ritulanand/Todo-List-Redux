@@ -19,6 +19,10 @@ function TodoForm(){
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("[LOG] :Todo add action dispacthed");
+        if(todoText === ""){
+            alert("Please enter a todo text")
+            return;
+        }
         dispatch(addTodoAsync(todoText));
         setTodoText("");
     }
